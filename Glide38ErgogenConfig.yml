@@ -1,0 +1,194 @@
+points:
+  zones:
+    matrix:
+      columns:
+        outer:
+          key.stagger: -0.1U
+          key.column_net: P10
+        ring:
+          key.stagger: 0.1U
+          key.column_net: P16
+        middle:
+          key.stagger: 0.1U
+          key.column_net: P14
+        index:
+          key.stagger: -0.1U
+          key.column_net: P15
+        inner:
+          key.stagger: -0.1U
+          key.column_net: P18
+      rows:
+        mod:
+          row_net: P9
+        bottom:
+          row_net: P8 
+        home:
+          row_net: P7
+    thumbs:
+      anchor:
+        ref: matrix_inner_mod
+        shift: [-2U, -U]
+      columns:
+        alt:
+          key.stagger: 0.1U
+          key.column_net: P16
+        ctrl:
+          key.column_net: P14
+        layer:
+          key.stagger: -0.1U
+          key.column_net: P15
+        space:
+          key:
+            width: 1.5U
+            splay: 57
+            shift: [0.5U, -0.1U]
+            column_net: P18
+      rows:
+        cluster:
+          row_net: P6
+outlines:
+  raw:
+    - what: rectangle
+      where: true
+      size: [u, u]
+  keys:
+    - what: rectangle
+      where: true
+      size: [u-0.5, u-0.5]
+  board:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_outer_home
+          shift: [0, 0]
+        - ref: matrix_ring_home
+          shift: [0, 0]
+        - ref: matrix_middle_home
+          shift: [0, 0]
+        - ref: matrix_index_home
+          shift: [0, 0]
+        - ref: matrix_inner_home
+          shift: [0, 0]
+        - ref: matrix_outer_mod
+          shift: [0, 0]
+        - ref: matrix_outer_bottom
+          shift: [0, 0]
+
+  combo:
+    - name: board
+    - operation: subtract
+      name: keys
+pcbs:
+  Glide38Pcb:
+    footprints:
+      mx:
+        what: mx
+        where: true
+        params:
+          keycaps: true
+          reverse: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
+      promicroDown:
+        what: promicro
+        params:
+          orientation: "down"
+        where:
+          ref: matrix_inner_home
+          shift: [1.1U, -0.5U]
+          rotate: 270
+      # promicroUp:
+      #   what: promicro
+      #   params:
+      #     orientation: "up"
+      #   where:
+      #     ref: matrix_inner_home
+      #     shift: [1U, -0.55U]
+      #     rotate: 270
+      padMinus:
+        what: pad
+        where:
+          ref: matrix_inner_home
+          shift: [0.7U, -1.4U]
+          rotate: 270
+        params:
+          net: GND
+      padPlus:
+        what: pad
+        where:
+          ref: matrix_inner_home
+          shift: [0.7U, -1.5U]
+          rotate: 270
+        params:
+          net: RAW
+      oled:
+        what: oled
+        params:
+          side: "F"
+          SDA: P2
+          SCL: P3
+        where:
+          ref: matrix_inner_home
+          shift: [1.45U, -1.4U]
+          rotate: 270
+      trrs:
+        what: trrs
+        params:
+          A: GND
+          B: GND
+          C: P1
+          D: VCC
+          reverse: true
+        where:
+          ref: matrix_inner_home
+          shift: [1.9U, 0.4U]
+          rotate: 0
+      reset:
+        what: button
+        where:
+          ref:
+            - matrix_inner_home
+          shift: [1.8u, -0.8U]
+          rotate: 90
+        params:
+          from: RST
+          to: GND
+      resetbottom:
+        what: button
+        where:
+          ref:
+            - matrix_inner_home
+          shift: [1.8u, -0.8U]
+          rotate: 90
+        params:
+          from: RST
+          to: GND
+          side: B
+      holeTopLeft:
+        what: mountinghole
+        where:
+          ref: [matrix_outer_mod]
+          shift: [0.5U, -0.4U]
+      holeBottmLeft:
+        what: mountinghole
+        where:
+          ref: [matrix_outer_home]
+          shift: [0.5U, -0.4U]
+      holeTopRight:
+        what: mountinghole
+        where:
+          ref: [matrix_index_home]
+          shift: [0.5U, -0.5U]
+      holeBottmRight:
+        what: mountinghole
+        where:
+          ref: [matrix_inner_mod]
+          shift: [0.5U, -0.4U]

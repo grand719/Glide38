@@ -1,0 +1,28 @@
+{
+  "keyboard_name": "Glide38",
+  "manufacturer": "Grand719",
+  "url": "https://github.com/grand719",
+  "maintainer": "Grand719",
+  "usb": {
+    "vid": "0x0000",
+    "pid": "0xFEED",
+    "device_version": "1.0.0"
+  },
+  "features": {
+    "bootmagic": true,
+    "extrakey": true,
+    "mousekey": true,
+    "unicode": true
+  },
+  "matrix_pins": {
+    "cols": ["B6", "B2", "B3", "B1", "F7"],
+    "rows": ["E6", "B4", "B5", "D7"]
+  },
+  "diode_direction": "COL2ROW",
+  "split": {
+    "enabled": true,
+    "soft_serial_pin": "D3"
+  },
+  "processor": "atmega32u4",
+  "bootloader": "caterina"
+}
